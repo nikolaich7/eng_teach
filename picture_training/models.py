@@ -10,7 +10,7 @@ class Word(models.Model):
 
 
 class Picture(models.Model):
-    picture = models.ImageField(upload_to='media/%Y/%m/%d/')
+    picture = models.ImageField(upload_to='%Y/%m/%d/')
     text = models.TextField()
     translation = models.TextField()
     words = models.ManyToManyField('Word')

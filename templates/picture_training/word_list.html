@@ -1,0 +1,13 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Список слов {% endblock title %}
+
+{% block content %}
+
+    {% for word in object_list %}
+        <p>{{ word.word }}</p>
+        <p>{{ word.translation }}</p>
+        <img src="media/{{ word.picture_set.get.picture }}" class="card-img-top" alt="...">
+    {% endfor %}
+
+{% endblock content %}
