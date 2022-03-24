@@ -5,9 +5,43 @@
 {% block content %}
 
     {% for word in object_list %}
-        <p>{{ word.word }}</p>
-        <p>{{ word.translation }}</p>
-        <img src="media/{{ word.picture_set.get.picture }}" class="card-img-top" alt="...">
+<div class="container">
+<div class="row btn-lg">
+    <a class="btn btn-outline-primary col-3 disabled">{{ word.word }}</a>
+    <a class="btn btn-outline-primary col-3" data-bs-toggle="collapse"
+       href="#collapseExample1{{ word.pk }}" role="button" aria-expanded="false"
+       aria-controls="collapseExample1{{ word.pk }}">
+        Подсказка 1
+    </a>
+    <a class="btn btn-outline-primary col-3" data-bs-toggle="collapse"
+       href="#collapseExample2{{ word.pk }}" role="button" aria-expanded="false"
+       aria-controls="collapseExample2{{ word.pk }}">
+        Подсказка 2
+    </a>
+    <a class="btn btn-outline-primary col-3" data-bs-toggle="collapse"
+       href="#collapseExample3{{ word.pk }}" role="button" aria-expanded="false"
+       aria-controls="collapseExample3{{ word.pk }}">
+        Ответ
+    </a>
+</div>
+</div>
+<div class="collapse" id="collapseExample1{{ word.pk }}">
+  <div class="card card-body col-4">
+    <img src="media/{{ word.picture_set.get.picture }}" class="img-fluid" alt="...">
+  </div>
+</div>
+<div class="collapse" id="collapseExample2{{ word.pk }}">
+  <div class="card card-body">
+    {{ word.picture_set.get.translation }}
+  </div>
+</div>
+<div class="collapse" id="collapseExample3{{ word.pk }}">
+  <div class="card card-body">
+    {{ word.translation }}
+  </div>
+</div>
+
+
     {% endfor %}
 
 {% endblock content %}
