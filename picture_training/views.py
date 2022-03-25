@@ -9,9 +9,7 @@ class WordsListView(ListView):
     model = Word
     ordering = ['studied']
 
-
-def test(request):
-    if request.method == 'POST':
+    def post(self, request):
         request_dict = request.POST.dict()
         for key in request_dict:
             if key == 'csrfmiddlewaretoken':
@@ -19,4 +17,4 @@ def test(request):
             word = Word.objects.get(id=key)
             word.studied = True
             word.save()
-    return redirect(reverse('words_list_view'))
+        return redirect(reverse('words_list_view'))

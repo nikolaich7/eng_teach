@@ -5,7 +5,7 @@
 {% block content %}
 
 
-<form action="{% url 'test' %}" method="post">
+<form action="{% url 'words_list_view' %}" method="post">
     {% csrf_token %}
 
     {% for word in object_list %}
