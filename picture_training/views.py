@@ -14,6 +14,9 @@ class WordsListView(ListView):
         for key in request_dict:
             if key == 'csrfmiddlewaretoken':
                 continue
+            if key == 'reset':
+                Word.objects.all().update(studied=False)
+                break
             word = Word.objects.get(id=key)
             word.studied = True
             word.save()
