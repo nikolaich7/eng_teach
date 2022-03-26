@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from .models import Word
 
@@ -21,3 +21,10 @@ class WordsListView(ListView):
             word.studied = True
             word.save()
         return redirect(reverse('words_list_view'))
+
+
+class WordsDetailView(DetailView):
+    model = Word
+
+def test(request):
+    return redirect(reverse('words_detail_view', args=[Word.objects.order_by("?").first().pk]))
