@@ -11,52 +11,53 @@
     {% for word in object_list %}
 
 
-<div class="collapse" id="collapseExample1{{ word.pk }}">
-  <div class="card card-body col-6">
-    <img src="media/{{ word.picture_set.get.picture }}" class="img-fluid" alt="...">
-  </div>
-</div>
-<div class="collapse" id="collapseExample2{{ word.pk }}">
-  <div class="card card-body">
-    {{ word.picture_set.get.translation }}
-  </div>
-</div>
-<div class="collapse" id="collapseExample3{{ word.pk }}">
-  <div class="card card-body">
-    {{ word.translation|safe }}
-  </div>
-</div>
+    <div class="container">
+        <div class="row btn-lg">
+            <a class="btn btn-outline-primary col-3 disabled">{{ word.word }}</a>
+            <a class="btn btn-outline-primary col-3" data-bs-toggle="collapse"
+               href="#collapseExample1{{ word.pk }}" role="button" aria-expanded="false"
+               aria-controls="collapseExample1{{ word.pk }}">
+                Подсказка 1
+            </a>
+            <a class="btn btn-outline-primary col-3" data-bs-toggle="collapse"
+               href="#collapseExample2{{ word.pk }}" role="button" aria-expanded="false"
+               aria-controls="collapseExample2{{ word.pk }}">
+                Подсказка 2
+            </a>
+            <a class="btn btn-outline-primary col-3" data-bs-toggle="collapse"
+               href="#collapseExample3{{ word.pk }}" role="button" aria-expanded="false"
+               aria-controls="collapseExample3{{ word.pk }}">
+                Ответ
+            </a>
+        </div>
+    </div>
 
-
-<div class="container">
-<div class="row btn-lg">
-    <a class="btn btn-outline-primary col-3 disabled">{{ word.word }}</a>
-    <a class="btn btn-outline-primary col-3" data-bs-toggle="collapse"
-       href="#collapseExample1{{ word.pk }}" role="button" aria-expanded="false"
-       aria-controls="collapseExample1{{ word.pk }}">
-        Подсказка 1
-    </a>
-    <a class="btn btn-outline-primary col-3" data-bs-toggle="collapse"
-       href="#collapseExample2{{ word.pk }}" role="button" aria-expanded="false"
-       aria-controls="collapseExample2{{ word.pk }}">
-        Подсказка 2
-    </a>
-    <a class="btn btn-outline-primary col-3" data-bs-toggle="collapse"
-       href="#collapseExample3{{ word.pk }}" role="button" aria-expanded="false"
-       aria-controls="collapseExample3{{ word.pk }}">
-        Ответ
-    </a>
-</div>
-</div>
-
-{% if word.studied == False %}
+    {% if word.studied == False %}
     <div class="form-check">
         <input class="form-check-input" type="checkbox" id="{{ word.pk }}" name="{{ word.pk }}" value="1">
         <label class="form-check-label" for="{{ word.pk }}">
             {{ word.word }} изучено!
         </label>
     </div>
-{% endif %}
+    {% endif %}
+
+
+    <div class="collapse" id="collapseExample1{{ word.pk }}">
+        <div class="card card-body col-6">
+            <img src="media/{{ word.picture_set.last.picture }}" class="img-fluid" alt="...">
+        </div>
+    </div>
+    <div class="collapse" id="collapseExample2{{ word.pk }}">
+        <div class="card card-body">
+            {{ word.picture_set.last.translation }}
+        </div>
+    </div>
+    <div class="collapse" id="collapseExample3{{ word.pk }}">
+        <div class="card card-body">
+            {{ word.translation|safe }}
+        </div>
+    </div>
+
 
     {% endfor %}
     <button type="submit" class="btn btn-primary">Дальше</button>
@@ -65,5 +66,6 @@
     {% csrf_token %}
     <button type="submit" class="btn btn-primary" name="reset" value="1">Сбросить все изученые слова</button>
 </form>
+
 
 {% endblock content %}
