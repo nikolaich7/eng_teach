@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -18,3 +19,14 @@ class Picture(models.Model):
 
     def __str__(self):
         return self.text
+
+
+class WordsUser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user')
+    words_repeat_often = models.ForeignKey('Word', blank=True, null=True, on_delete=models.CASCADE,
+                                           related_name='words_repeat_often')
+    words_repeat = models.ForeignKey('Word', blank=True, null=True, on_delete=models.CASCADE, related_name='words_repeat')
+    words_repeat_rare = models.ForeignKey('Word', blank=True, null=True, on_delete=models.CASCADE,
+                                          related_name='words_repeat_rare')
+    words_studied = models.ForeignKey('Word', blank=True, null=True, on_delete=models.CASCADE, related_name='words_studied')
+    words_use = models.ForeignKey('Word', blank=True, null=True, on_delete=models.CASCADE, related_name='words_use')

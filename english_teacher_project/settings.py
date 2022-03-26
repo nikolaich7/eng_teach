@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'picture_training.apps.PictureTrainingConfig'
+    'picture_training.apps.PictureTrainingConfig',
+    'quote_training.apps.QuoteTrainingConfig'
 ]
 
 MIDDLEWARE = [
